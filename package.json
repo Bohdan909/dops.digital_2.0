@@ -13,8 +13,11 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "vue-html-secure": "^1.0.9",
+    "vue-mq": "^1.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
@@ -27,8 +30,11 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-nuxt": "^1.0.0",
     "husky": "^4.3.6",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
     "stylelint": "^13.7.2",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint-config-standard": "^20.0.0",
+    "webpack": "^4.44.1"
   },
   "husky": {
     "hooks": {

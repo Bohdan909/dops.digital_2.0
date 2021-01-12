@@ -1,0 +1,30 @@
+/* =========================
+    Elements
+  ========================= */
+
+// :after :before
+
+.ps {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+}
+
+// Text
+
+.text-btn {
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.trans-color {
+  transition: color .2s;
+}
+
+// Flex
+
+.fx-col {
+  display: flex;
+  flex-direction: column;
+}

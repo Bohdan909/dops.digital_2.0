@@ -1,62 +1,91 @@
 <template>
   <div>
-    <Nuxt />
+    <!-- Preloader -->
+    <Preloader ref="preloader" />
+
+    <!-- Menu -->
+    <MenuDrop :menu-open="menuOpen" @menu-toggle="menuToggle" />
+
+    <!-- Header -->
+    <Header :menu-open="menuOpen" @menu-toggle="menuToggle" />
+
+    <!-- Body App -->
+    <nuxt />
   </div>
 </template>
 
-<style>
-html {
-  font-family:
-    "Source Sans Pro",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+import Preloader from '~/components/Preloader'
+import Header from '~/components/Header/Header'
+import MenuDrop from '~/components/Header/MenuDrop'
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
+export default {
+  components: {
+    Preloader,
+    Header,
+    MenuDrop
+  },
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+  data () {
+    return {
+      menuOpen: false
+    }
+  },
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+  mounted () {
+    // Preloader Hide
+    this.$nextTick(() => {
+      setTimeout(() => this.$refs.preloader.$el.classList.add('hide'), 100)
+    })
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+    // Set Style Variables
+    this.setVH()
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+    window.addEventListener('resize', () => {
+      this.setVH()
+    })
+
+    // Add SEO <base> Element In Head
+    if (window.location.origin === 'https://dops.digital') {
+      this.addBaseElement()
+    };
+  },
+
+  destroyed () {
+    window.removeEventListener('resize', this.setVH)
+  },
+
+  methods: {
+    setVH () {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    },
+
+    menuToggle (closeMenu = true) {
+      !closeMenu
+        ? this.menuOpen = closeMenu
+        : this.menuOpen = !this.menuOpen
+
+      this.scrollbarToggle(this.menuOpen)
+    },
+
+    scrollbarToggle (flag) {
+      document.querySelector('html').style.overflow = `${flag ? 'hidden' : 'auto'}`
+    },
+
+    addBaseElement () {
+      const tag = document.createElement('base')
+      tag.href = 'https://dops.digital/'
+
+      document.head.appendChild(tag)
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+
+.container-error + .footer {
+  display: none;
 }
 </style>

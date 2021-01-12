@@ -1,0 +1,46 @@
+@import "utils/vars";
+@import "utils/reset";
+@import "utils/mixins";
+
+html,
+body {
+  scroll-behavior: smooth;
+  min-width: 320px;
+  width: 100%;
+  text-align: center;
+
+  @include mobile {
+    overflow: auto;
+    height: auto;
+    padding: unset;
+  }
+}
+
+html {
+  @include border-box;
+
+  &.scroll-behavior-smooth, 
+  &.scroll-behavior-smooth body {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background-color: $color-main;
+}
+
+.socket {
+  @include socket;
+}
+
+.fade-page-enter-active, .fade-page-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-page-enter, .fade-page-leave-to {
+  opacity: 0;
+}
+
+// Common
+@import "./common.scss";

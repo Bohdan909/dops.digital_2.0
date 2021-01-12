@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    'stylelint-config-standard'
+    // 'stylelint-config-standard'
   ],
   // add your custom config here
   // https://stylelint.io/user-guide/configuration
@@ -32,6 +32,7 @@ module.exports = {
     'selector-pseudo-element-colon-notation': 'double',
     'color-hex-case': 'lower',
     'max-nesting-depth': 4,
+    'at-rule-no-unknown': null,
     'no-unknown-animations': true,
     'number-leading-zero': 'never',
     'number-no-trailing-zeros': true,

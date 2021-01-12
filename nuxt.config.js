@@ -1,6 +1,11 @@
+import StylelintWebpackPlugin from 'stylelint-webpack-plugin'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
+    htmlAttrs: {
+      lang: 'en'
+    },
     title: 'dops.digital_2.0',
     meta: [
       { charset: 'utf-8' },
@@ -8,16 +13,39 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        href: '/favicon-16x16.png',
+        sizes: '16x16'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        href: '/favicon-32x32.png',
+        sizes: '32x32'
+      }
     ]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-  ],
+  css: [{
+    src: '~/assets/scss/main.scss',
+    lang: 'scss'
+  }],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~plugins/main',
+    {
+      src: '~plugins/vue-secure-html',
+      ssr: false
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -34,13 +62,43 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: [
+      '@/assets/scss/utils/vars.scss',
+      '@/assets/scss/utils/mixins.scss'
+    ]
+  },
+
+  server: {
+    port: 8000
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    extend (config) {
+      config.plugins.push(
+        new StylelintWebpackPlugin({
+          syntax: 'scss'
+        })
+      )
+    }
+  },
+
+  loading: {
+    color: '#0077d9',
+    height: '4px',
+    duration: 500
+  },
+
+  transition: {
+    name: 'fade-page',
+    mode: 'out-in'
   }
 }

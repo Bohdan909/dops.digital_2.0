@@ -1,0 +1,6 @@
+User-agent: *
+
+Disallow:
+
+Sitemap:https://dops.digital/sitemapindex.xml
+Host: https://dops.digital/
