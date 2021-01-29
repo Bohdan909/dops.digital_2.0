@@ -4,6 +4,7 @@
     :to="toPage"
     :href="link"
     :type="type"
+    :target="target"
     class="btn"
   >
     <span class="btn-text fx-col ttl ttl-4 trans-color">
@@ -38,6 +39,12 @@ export default {
     toPage: {
       type: String,
       default: ''
+    },
+
+    target: {
+      type: String,
+      default: '',
+      required: false
     }
   }
 }
@@ -52,7 +59,7 @@ export default {
   padding: 0 23px 0 9px;
   cursor: pointer;
   border-radius: 4px;
-  border: 1px solid $text-color-h;
+  border: 1px solid $text-color-g;
   transition: border-color .2s, background-color .2s;
 
   &:not(.btn-full) {
@@ -87,6 +94,7 @@ export default {
 }
 
 .btn-text {
+  padding-top: 2px;
   white-space: nowrap;
   justify-content: center;
 }
@@ -96,16 +104,39 @@ export default {
   &::v-deep {
 
     .btn-text {
+      color: $text-color-g;
+    }
+  }
+
+  &::after {
+    border-color: transparent transparent transparent $text-color-g;
+  }
+
+  @include hover {
+    border-color: $text-color-g;
+
+    &::after {
+      border-color: transparent transparent transparent $color-orange;
+    }
+  }
+}
+
+.btn-light {
+  border-color: #ebebeb;
+
+  &::v-deep {
+
+    .btn-text {
       color: $color-main;
     }
   }
 
   &::after {
-    border-color: transparent transparent transparent $text-color-h;
+    border-color: transparent transparent transparent $color-main;
   }
 
   @include hover {
-    border-color: $text-color-h;
+    border-color: $text-color-g;
 
     &::after {
       border-color: transparent transparent transparent $color-orange;

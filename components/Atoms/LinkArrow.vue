@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="toPage"
-    class="link-arrow"
+    class="link-arrow trans-color"
   >
     {{ name }}
   </nuxt-link>
@@ -29,7 +29,6 @@ export default {
   position: relative;
   align-self: flex-start;
   text-decoration: none;
-  transition: color .2s;
   font-size: 13px;
   line-height: 18px;
 
@@ -51,15 +50,19 @@ export default {
 }
 
 .header-link {
-  color: $text-color-h;
+  color: $text-color-g;
   font-size: 18px;
   line-height: 23px;
 
   &::before {
-    top: 7px;
+    top: 6px;
   }
 
   @include hover {
+    color: $text-color;
+  }
+
+  &.nuxt-link-active {
     color: $text-color;
   }
 }

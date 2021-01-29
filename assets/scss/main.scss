@@ -42,5 +42,10 @@ body {
   opacity: 0;
 }
 
+.__nim_o {
+  width: auto !important;
+  height: auto !important;
+}
+
 // Common
 @import "./common.scss";

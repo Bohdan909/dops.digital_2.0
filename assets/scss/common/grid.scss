@@ -3,12 +3,13 @@
   ========================= */
 
 $fg-columns: 10 !default;
-$fg-gutter: 10px !default;
+$fg-gutter: 5px !default;
 $no-fg-gutter: 0 !default;
 
 $fg-class-row: "row" !default;
 $fg-class-col: "col" !default;
 $fg-class-off: "off" !default;
+$fg-class-ffo: "ffo" !default;
 
 .no-padding {
   padding: 0 !important;
@@ -105,8 +106,20 @@ $fg-breakpoints: (
     }
   }
 
+  @for $i from 1 through $fg-columns {
+    @if ($i != $fg-columns) {
+      .#{ $fg-class-ffo }-#{$namespace}-#{$i} {
+        margin-right: get-col-percent($i);
+      }
+    }
+  }
+
   .#{ $fg-class-off }-#{$namespace}-reset {
     margin-left: 0;
+  }
+
+  .#{ $fg-class-ffo }-#{$namespace}-reset {
+    margin-right: 0;
   }
 }
 

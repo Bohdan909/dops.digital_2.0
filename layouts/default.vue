@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'menu-open' : menuOpen }">
     <!-- Preloader -->
     <Preloader ref="preloader" />
 
@@ -11,13 +11,20 @@
 
     <!-- Body App -->
     <nuxt />
+
+    <!-- Footer -->
+    <Footer
+      ref="footer"
+      :footer-show="footerShow"
+      :with-footer="withFooter"
+    />
   </div>
 </template>
 
 <script>
 import Preloader from '~/components/Preloader'
-import Header from '~/components/Header/Header'
-import MenuDrop from '~/components/Header/MenuDrop'
+import Header from '~/components/header/Header'
+import MenuDrop from '~/components/header/MenuDrop'
 
 export default {
   components: {
@@ -28,7 +35,8 @@ export default {
 
   data () {
     return {
-      menuOpen: false
+      menuOpen: false,
+      footerShow: false
     }
   },
 
@@ -48,11 +56,17 @@ export default {
     // Add SEO <base> Element In Head
     if (window.location.origin === 'https://dops.digital') {
       this.addBaseElement()
-    };
+    }
+
+    // Footer Show On Scroll
+    if (this.$mq !== 'mobile') {
+      window.addEventListener('scroll', this.handleFooter)
+    }
   },
 
   destroyed () {
     window.removeEventListener('resize', this.setVH)
+    window.removeEventListener('scroll', this.handleFooter)
   },
 
   methods: {
@@ -78,6 +92,26 @@ export default {
       tag.href = 'https://dops.digital/'
 
       document.head.appendChild(tag)
+    },
+
+    handleFooter () {
+      if (this.withFooter) {
+        const footer = this.$refs.footer.$el
+        const footerPosition = footer.offsetTop
+        const footerPosDelay = 170
+        const windowHeight = window.innerHeight
+
+        if (window.pageYOffset > footerPosition - windowHeight) {
+          this.footerShow = true
+          const footerEclipse = footer.querySelector('.footer-eclipse')
+
+          if (footerEclipse) {
+            footerEclipse.style.opacity = (window.pageYOffset - footerPosition + windowHeight - footerPosDelay) / (footer.offsetHeight - footerPosDelay)
+          }
+        } else {
+          this.footerShow = false
+        }
+      }
     }
   }
 }

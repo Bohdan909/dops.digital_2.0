@@ -2,16 +2,16 @@
     Elements
   ========================= */
 
-// :after :before
-
+  
 .ps {
   content: "";
-  display: block;
   position: absolute;
+  display: block;
   top: 0;
+  left: 0;
 }
 
-// Text
+// ==== Text ==== //
 
 .text-btn {
   font-size: 18px;
@@ -22,9 +22,124 @@
   transition: color .2s;
 }
 
-// Flex
+.text-color-l {
+  color: $text-color-s;
+}
+
+.text-color-d {
+  color: $text-color-g;
+}
+
+.text-color-r {
+  color: $text-color-r;
+}
+
+.text-color-w {
+  color: $color-main;
+}
+
+// ==== Flex ==== //
 
 .fx-col {
   display: flex;
   flex-direction: column;
+}
+
+// ==== Screen ==== //
+
+.screen {
+  position: relative;
+  height: 100vh;
+
+  &.screen-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    transform: translateZ(0) translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+}
+
+.screen-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.screen-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// ==== Border Column ==== //
+
+.col-br-top,
+.col-br-top-end {
+  position: relative;
+
+  &::before, &::after {
+    @extend .ps;
+    height: 1px;
+    left: 5px;
+    right: 5px;
+    background-color: $color-border;
+  }
+
+  &::after {
+    top: auto;
+    bottom: 0;
+  }
+
+  &:not(.col-br-top-end)::before,
+  &:not(.col-br-top-end)::after {
+    right: -5px;
+
+    @include mobile {
+      right: 5px;
+    }
+  }
+
+  &:not(.col-br-double)::after {
+    display: none;
+  }
+}
+
+// ==== Others ==== //
+
+.page-wrapper {
+  position: relative;
+  background-color: $color-main;
+  z-index: 100;
+}
+
+.br {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bb {
+  border-bottom: 1px solid $color-border;
+}
+
+.bt {
+  border-top: 1px solid $color-border;
+}
+
+.bb-d {
+  border-bottom: 1px solid $color-border-d;
+}
+
+.ha {
+  height: auto;
+}
+
+.bg-dark {
+  background-color: $color-black;
 }

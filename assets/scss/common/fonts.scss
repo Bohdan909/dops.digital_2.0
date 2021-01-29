@@ -36,8 +36,12 @@ a {
 }
 
 .ttl-1 {
-  font-size: 55px;
+  font-size: 52px;
   line-height: 52px;
+
+  &.bb {
+    padding-bottom: 4px;
+  }
 }
 
 .ttl-2 {
@@ -53,6 +57,16 @@ a {
 .ttl-4 {
   font-size: 18px;
   line-height: 23px;
+  font-family: $font-main;
+}
+
+@include mobile {
+
+  &:not(.ttl-not-r).ttl-1 {
+    font-size: 30px;
+    line-height: 30px;
+    letter-spacing: -.9px;
+  }
 }
 
 @font-face {

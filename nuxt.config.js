@@ -1,6 +1,7 @@
 import StylelintWebpackPlugin from 'stylelint-webpack-plugin'
 
 export default {
+  mode: 'universal',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     htmlAttrs: {
@@ -61,9 +62,11 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    ['nuxt-lazy-load', {
+      directiveOnly: true
+    }]
   ],
 
   styleResources: {

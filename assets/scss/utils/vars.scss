@@ -1,11 +1,12 @@
 // Font
 $font-main               : "Suisse Intl Book", helvetica, arial, sans-serif;
 $font-med                : "Suisse Intl Medium", helvetica, arial, sans-serif;
+
 // Values
-$header-height: 45px;
+$header-height           : 45px;
 
 // Size
-$font-size          : 14px;
+$font-size               : 14px;
 
 // Main color
 $color-main              : #fff;
@@ -14,10 +15,13 @@ $color-black             : #171b1c;
 
 // Text Color
 $text-color              : #000;    
-$text-color-h            : #a3a4a8;   
+$text-color-g            : #a3a4a8;   
+$text-color-s            : #777;
+$text-color-r            : #ee2912;
 
 // Border Color
-$border-color            : #dbdbdb;
+$color-border            : #dbdbdb;
+$color-border-d          : #2c3032;
 
 // Easing
 $easing: cubic-bezier(.16, .04, .14, 1.04);

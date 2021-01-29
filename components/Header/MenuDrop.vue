@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Button from '~/components/Atoms/Button'
+import Button from '~/components/atoms/Button'
 
 export default {
   components: {
@@ -65,18 +65,15 @@ export default {
   width: 100%;
   height: 100%;
   z-index: -1;
-  animation: fadeOut-l .3s forwards 0s;
-  transition: z-index 0s ease;
-  transition-delay: 1.5s;
+  animation: fadeOut-l .1s forwards;
   background-color: $color-black;
 }
 
 .menu-drop.open {
-  animation: fadeIn-l .3s forwards;
+  animation: fadeIn-l .2s forwards;
   -webkit-overflow-scrolling: touch;
   overflow: hidden;
-  z-index: 102;
-  transition-delay: 0s;
+  z-index: 999;
 
   /deep/ .menu ul li {
     transition-delay: .5s;
@@ -132,7 +129,7 @@ export default {
   margin-bottom: 20px;
 
   &.nuxt-link-active {
-    color: $text-color-h;
+    color: $text-color-g;
   }
 }
 
