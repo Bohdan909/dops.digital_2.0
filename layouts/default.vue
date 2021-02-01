@@ -13,11 +13,7 @@
     <nuxt />
 
     <!-- Footer -->
-    <Footer
-      ref="footer"
-      :footer-show="footerShow"
-      :with-footer="withFooter"
-    />
+    <Footer ref="footer" :footer-show="footerShow" />
   </div>
 </template>
 
@@ -25,12 +21,14 @@
 import Preloader from '~/components/Preloader'
 import Header from '~/components/header/Header'
 import MenuDrop from '~/components/header/MenuDrop'
+import Footer from '~/components/footer/Footer'
 
 export default {
   components: {
     Preloader,
     Header,
-    MenuDrop
+    MenuDrop,
+    Footer
   },
 
   data () {
@@ -95,22 +93,20 @@ export default {
     },
 
     handleFooter () {
-      if (this.withFooter) {
-        const footer = this.$refs.footer.$el
-        const footerPosition = footer.offsetTop
-        const footerPosDelay = 170
-        const windowHeight = window.innerHeight
+      const footer = this.$refs.footer.$el
+      const footerPosition = footer.offsetTop
+      const footerPosDelay = 170
+      const windowHeight = window.innerHeight
 
-        if (window.pageYOffset > footerPosition - windowHeight) {
-          this.footerShow = true
-          const footerEclipse = footer.querySelector('.footer-eclipse')
+      if (window.pageYOffset > footerPosition - windowHeight) {
+        this.footerShow = true
+        const footerEclipse = footer.querySelector('.footer-eclipse')
 
-          if (footerEclipse) {
-            footerEclipse.style.opacity = (window.pageYOffset - footerPosition + windowHeight - footerPosDelay) / (footer.offsetHeight - footerPosDelay)
-          }
-        } else {
-          this.footerShow = false
+        if (footerEclipse) {
+          footerEclipse.style.opacity = (window.pageYOffset - footerPosition + windowHeight - footerPosDelay) / (footer.offsetHeight - footerPosDelay)
         }
+      } else {
+        this.footerShow = false
       }
     }
   }

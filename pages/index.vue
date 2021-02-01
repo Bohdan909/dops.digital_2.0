@@ -6,7 +6,7 @@
     <!-- Screen Video -->
     <HomeScreenVideo />
 
-    <div class="page-wrapper">
+    <div class="page-bg">
       <div class="socket">
         <!-- Works -->
         <HomeWorks />
@@ -65,5 +65,12 @@ export default {
 .page-container {
   min-height: 100vh;
   padding-top: $header-height;
+}
+
+.page-bg {
+  position: relative;
+  padding-bottom: 10px;
+  background-color: $color-main;
+  z-index: 100;
 }
 </style>

@@ -44,7 +44,7 @@ export default {
     position: absolute;
     display: block;
     top: 2px;
-    right: -20px;
+    right: 0;
     width: 14px;
     height: 16px;
     background-size: 100% 100%;

@@ -114,7 +114,9 @@ Vue.mixin({
     },
 
     touchDevice () {
-      return !!('ontouchstart' in window || navigator.maxTouchPoints)
+      if (process.client) {
+        return !!('ontouchstart' in window || navigator.maxTouchPoints)
+      }
     }
   }
 })

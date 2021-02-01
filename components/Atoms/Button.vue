@@ -94,6 +94,7 @@ export default {
 }
 
 .btn-text {
+  height: 100%;
   padding-top: 2px;
   white-space: nowrap;
   justify-content: center;

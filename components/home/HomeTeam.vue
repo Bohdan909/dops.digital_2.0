@@ -76,7 +76,7 @@ export default {
 
 .team-main-block,
 .team-image-block {
-  min-height: 100vh;
+  height: 100vh;
 
   @include tablet-small {
     min-height: 750px;

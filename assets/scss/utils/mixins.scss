@@ -336,3 +336,10 @@ $iphone5-width  :  320px;
 @mixin eclipse($color) {
   background: linear-gradient(180deg, transparent 0, $color);
 }
+
+// Text Eclipse
+@mixin text-ellipse {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -38,6 +38,10 @@
   color: $color-main;
 }
 
+.text-color-gd {
+  color: $text-color-gd;
+}
+
 // ==== Flex ==== //
 
 .fx-col {
@@ -92,6 +96,13 @@
     background-color: $color-border;
   }
 
+  &.col-br-d {
+
+    &::before, &::after {
+      background-color: $color-border-d;
+    }
+  }
+
   &::after {
     top: auto;
     bottom: 0;
@@ -113,9 +124,8 @@
 
 // ==== Others ==== //
 
-.page-wrapper {
+.section {
   position: relative;
-  background-color: $color-main;
   z-index: 100;
 }
 
@@ -142,4 +152,8 @@
 
 .bg-dark {
   background-color: $color-black;
+}
+
+.jcc {
+  justify-content: center;
 }

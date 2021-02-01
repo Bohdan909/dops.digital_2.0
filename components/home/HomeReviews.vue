@@ -17,7 +17,8 @@
       <!-- Cursor -->
       <CursorDrag
         ref="cursor"
-        class="cursor-drag"
+        :swipe="touchDevice() ? true : false"
+        :class="{'cursor-swipe': touchDevice()}"
       />
 
       <Hooper
@@ -158,15 +159,17 @@ export default {
   },
 
   mounted () {
-    const cursor = this.$refs.cursor.$el
+    if (!this.touchDevice()) {
+      const cursor = this.$refs.cursor.$el
 
-    this.cursorImage(
-      this.$refs.hoverWrap,
-      this.$refs.hoverArea,
-      cursor,
-      35,
-      135
-    )
+      this.cursorImage(
+        this.$refs.hoverWrap,
+        this.$refs.hoverArea,
+        cursor,
+        35,
+        135
+      )
+    }
   }
 }
 </script>
@@ -181,6 +184,10 @@ export default {
   }
 }
 
+.reviews-hover-area {
+  position: relative;
+}
+
 .hooper {
   height: 238px;
   outline: none;
@@ -189,6 +196,7 @@ export default {
 
   @include mobile {
     height: 350px;
+    padding-bottom: 100px;
   }
 }
 
