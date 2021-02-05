@@ -94,9 +94,15 @@ export default {
     }
   },
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:8000',
+
+    strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
+  },
+
   loading: {
-    color: '#0077d9',
-    height: '4px',
+    color: '#171b1c',
+    height: '3px',
     duration: 500
   },
 

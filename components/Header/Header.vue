@@ -6,7 +6,7 @@
       'header-hide': activeHeader
     }]"
   >
-    <div class="socket">
+    <div class="header-socket socket">
       <div class="row">
         <!-- Menu Switcher -->
         <div
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Logo -->
-        <div class="header-col col-mob-2 col-tablet-3 col-desktop-2">
+        <div class="header-col col-mob-2 col-tablet-3 col-tablet-s-2 col-desktop-2">
           <nuxt-link
             class="logo"
             to="/"
@@ -31,7 +31,7 @@
         </div>
 
         <!-- Work -->
-        <div class="header-col col-desktop-4 col-tablet-s-2 col-tablet-1">
+        <div class="header-col col-desktop-4 col-tablet-s-3 col-tablet-1">
           <LinkArrow
             v-if="$mq !== 'mobile'"
             class="header-link"
@@ -136,12 +136,15 @@ export default {
   z-index: 999;
   background-color: $color-main;
   transition: transform .3s, background-color 0s;
-  border-bottom: 1px solid $color-border;
   transform: translateY(0%);
 
   &.header-hide {
     transform: translateY(-100%);
   }
+}
+
+.header-socket {
+  border-bottom: 1px solid $color-border;
 }
 
 .header-black {

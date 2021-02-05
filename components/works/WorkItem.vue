@@ -11,24 +11,37 @@
     ]"
   >
     <!-- Visual -->
-    <div class="work-visual br">
+    <nuxt-link
+      class="work-visual br"
+      :to="`/works/${workItem.Slug}`"
+    >
       <!-- Desktop -->
       <div v-if="$mq !== 'mobile'">
         <!-- Image Desktop -->
         <ImageElement
-          v-if="workItem.asset && workItem.asset.elementType === 'img'"
+          v-if="workItem.WorkPreview && workItem.WorkPreview.PreviewType === 'image'"
           class="work-visual-img"
-          :image-src="workItem.asset.element"
-          :placeholder-src="workItem.asset.placeholder"
-          :alt="`Image ${workItem.name}`"
+          :image-src="
+            workItem.WorkPreview[getOrientation] &&
+              `${api_url}${workItem.WorkPreview[getOrientation].url}`
+          "
+          :placeholder-src="
+            workItem.WorkPreview[`${getOrientation}Placeholder`] &&
+              api_url + workItem.WorkPreview[`${getOrientation}Placeholder`].url
+          "
+          :alt="`Image ${workItem.WorkTitle}`"
         />
 
         <!-- Video Desktop -->
         <VideoElement
-          v-if="workItem.asset && workItem.asset.elementType === 'video'"
+          v-if="workItem.WorkPreview && workItem.WorkPreview.PreviewType === 'video'"
           class="work-visual-video"
-          :video-src="workItem.asset.element"
-          :poster="workItem.asset.poster"
+          :video-src="workItem.WorkPreview[getOrientation] &&
+            `${api_url}${workItem.WorkPreview[getOrientation].url}`
+          "
+          :poster="workItem.WorkPreview[`${getOrientation}Placeholder`] &&
+            api_url + workItem.WorkPreview[`${getOrientation}Placeholder`].url
+          "
           is-lazy
         />
       </div>
@@ -36,13 +49,18 @@
       <!-- Image Mobile -->
       <div v-else>
         <ImageElement
+          v-if="workItem.WorkPreview.PreviewMobile"
           class="work-visual-img"
-          :image-src="workItem.asset && workItem.asset.imageMobile"
-          :placeholder-src="workItem.asset && workItem.asset.placeholderMobile"
-          :alt="`Image ${workItem.name}`"
+          :image-src="workItem.WorkPreview.PreviewMobile &&
+            `${api_url}${workItem.WorkPreview.PreviewMobile.url}`
+          "
+          :placeholder-src="workItem.WorkPreview.PreviewMobilePlaceholder &&
+            api_url + workItem.WorkPreview.PreviewMobilePlaceholder.url
+          "
+          :alt="`Image ${workItem.WorkTitle}`"
         />
       </div>
-    </div>
+    </nuxt-link>
 
     <!-- Description For Main -->
     <div
@@ -52,19 +70,20 @@
       <div class="row work-desc-row bb ha">
         <div class="col-tablet-6 col-tablet-s-3 off-tablet-s-2">
           <TextElement
-            class="text-primary text-color-l"
+            class="text-primary text-color-s"
             text="Name"
           />
         </div>
         <div class="col-tablet-2">
           <TextElement
-            class="text-primary text-color-l"
+            class="text-primary text-color-s"
             text="Type"
           />
         </div>
         <div class="col-tablet-2 col-tablet-s-3">
           <TextElement
-            class="text-primary text-color-l"
+            v-if="workItem.WorkDescription"
+            class="text-primary text-color-s"
             text="Year"
           />
         </div>
@@ -74,19 +93,20 @@
         <div class="col-tablet-6 col-tablet-s-3 off-tablet-s-2">
           <Title
             class="ttl-4"
-            text="Just Whiskey"
+            :text="workItem.WorkTitle"
           />
         </div>
         <div class="col-tablet-2">
           <TextElement
-            class="text-primary text-color-l"
+            class="text-primary text-color-s"
             text="Website, Identity"
           />
         </div>
         <div class="col-tablet-2 col-tablet-s-3">
           <TextElement
-            class="text-primary text-color-l"
-            text="2019"
+            v-if="workItem.WorkDescription"
+            class="text-primary text-color-s"
+            :text="workItem.WorkDescription.Year"
           />
         </div>
       </div>
@@ -95,14 +115,15 @@
     <div v-else class="work-desc ha">
       <div class="work-desc-row bb ha">
         <TextElement
-          class="text-primary text-color-l"
-          text="2019"
+          v-if="workItem.WorkDescription"
+          class="text-primary text-color-s"
+          :text="workItem.WorkDescription.Year"
         />
       </div>
       <div class="work-desc-row bb ha">
         <Title
           class="ttl-4"
-          text="Just Whiskey"
+          :text="workItem.WorkTitle"
         />
       </div>
     </div>
@@ -113,12 +134,14 @@
 import ImageElement from '~/components/atoms/ImageElement'
 import VideoElement from '~/components/atoms/VideoElement'
 import TextElement from '~/components/atoms/TextElement'
+import Title from '~/components/atoms/Title'
 
 export default {
   components: {
     ImageElement,
     VideoElement,
-    TextElement
+    TextElement,
+    Title
   },
 
   props: {
@@ -129,12 +152,13 @@ export default {
 
     workIndex: {
       type: Number,
-      default: 0
+      default: 1
     }
   },
 
   data () {
     return {
+      api_url: process.env.strapiBaseUri,
       itemMainTablet: [1, 6, 11, 16, 21, 26, 31].some(el => el === this.workIndex),
       itemMain: [1, 5, 9, 13, 17, 21, 25, 29].some(el => el === this.workIndex),
       itemMiddle: [2, 8, 10, 16, 18, 24, 26, 30].some(el => el === this.workIndex),
@@ -154,9 +178,21 @@ export default {
       return indexArray
     },
 
+    getOrientation () {
+      let image = ''
+      this.itemMain ? image = 'Preview' : image = 'PreviewPortrait'
+      return image
+    },
+
     desktopAndTablet () {
       return (this.mqDetect() === 'tablet' || this.mqDetect() === 'desktop')
     }
+  },
+
+  mounted () {
+    this.$nextTick(() => {
+      console.log(this.workIndex)
+    })
   }
 }
 </script>

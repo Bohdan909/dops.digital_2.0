@@ -4,7 +4,7 @@
       <div class="col-mob-10">
         <Title
           element="h4"
-          class="ttl-4 ttl-top bb-d text-color-l"
+          class="ttl-4 ttl-top bb-d text-color-s"
           text="What we do"
         />
       </div>
@@ -31,7 +31,7 @@
               'ttl-1 tag',
               {
                 'tag-highlight': index === 0,
-                'text-color-l' : index !== 0
+                'text-color-s' : index !== 0
               }
             ]"
             :text="tag"

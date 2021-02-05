@@ -1,4 +1,5 @@
-import worksData from '~/static/worksData'
+// import worksData from '~/static/worksData'
+import instanceAxios from '~/axiosInstance'
 
 const state = {
   worksData: [],
@@ -16,8 +17,14 @@ const getters = {
 }
 
 const actions = {
-  actionWorks (vuexContext) {
-    vuexContext.commit('setWorks', worksData)
+
+  async actionWorks (vuexContext) {
+    try {
+      const { data } = await instanceAxios.get('/works')
+      vuexContext.commit('setWorks', data)
+    } catch (err) {
+      vuexContext.commit('SetError')
+    }
   },
 
   actionWorksLimit (vuexContext, limitArray) {
@@ -36,6 +43,10 @@ const mutations = {
       newArray.push(state.worksData[index])
     })
     state.worksDataLimit = newArray
+  },
+
+  SetError () {
+    this.$router.push('/404')
   }
 }
 

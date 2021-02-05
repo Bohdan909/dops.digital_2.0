@@ -38,6 +38,7 @@ a {
 .ttl-1 {
   font-size: 52px;
   line-height: 52px;
+  letter-spacing: -1.56px;
 
   &.bb {
     padding-bottom: 4px;
@@ -58,6 +59,11 @@ a {
   font-size: 18px;
   line-height: 23px;
   font-family: $font-main;
+}
+
+.ttl-5 {
+  font-size: 13px;
+  line-height: 18px;
 }
 
 @include mobile {

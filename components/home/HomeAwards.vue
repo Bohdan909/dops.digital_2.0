@@ -14,7 +14,7 @@
       <!-- Awards Head -->
       <div class="awards-head">
         <TextElement
-          class="awards-head-text text-primary text-color-l"
+          class="awards-head-text text-primary text-color-s"
           text="2 Awards"
         />
 
@@ -64,7 +64,7 @@
               class="awards-table-col col-desktop-3 col-tablet-s-5 col-tablet-4"
             >
               <TextElement
-                class="text-primary text-color-l"
+                class="text-primary text-color-s"
                 :text="item.nomination"
               />
             </div>
@@ -73,7 +73,7 @@
               class="awards-table-col col-desktop-2 col-tablet-2 col-mob-4"
             >
               <TextElement
-                class="text-primary text-color-l"
+                class="text-primary text-color-s"
                 :text="item.name"
               />
             </div>
@@ -100,7 +100,7 @@
       <!-- Behance Head -->
       <div class="awards-head">
         <TextElement
-          class="awards-head-text text-primary text-color-l"
+          class="awards-head-text text-primary text-color-s"
           text="14 Awards"
         />
 
@@ -146,7 +146,7 @@
             <div class="awards-table-col col-desktop-6 col-tablet-s-7 col-tablet-4 col-mob-5">
               <div class="awards-table-col-row">
                 <TextElement
-                  class="text-primary text-color-l"
+                  class="text-primary text-color-s"
                   :text="item.nomination"
                 />
 

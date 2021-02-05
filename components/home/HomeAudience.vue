@@ -62,7 +62,7 @@
     >
       <div class="col-mob-1 off-tablet-s-3">
         <TextElement
-          class="audience-desc text-primary text-color-l"
+          class="audience-desc text-primary text-color-s"
           text="We <br/> have a huge audience."
         />
       </div>

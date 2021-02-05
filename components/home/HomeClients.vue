@@ -40,7 +40,7 @@
         <div class="clients-project">
           <TextElement
             v-if="$mq !== 'mobile'"
-            class="text-secondary text-color-l"
+            class="text-secondary text-color-s"
             :text="item.year"
           />
           <Title
@@ -60,13 +60,13 @@
       <div class="col-mob-10 col-tablet-5 off-tablet-3">
         <TextElement
           v-if="$mq === 'mobile'"
-          class="clients-desc-year text-secondary text-color-l bt"
+          class="clients-desc-year text-secondary text-color-s bt"
           text="2016-2021"
         />
         <TextElement
           :class="[
             'clients-desc text-primary',
-            { 'text-color-l': $mq !== 'mobile' }
+            { 'text-color-s': $mq !== 'mobile' }
           ]"
           text="We actively manage a range of different brands for our clients. While many of these are for major national companies, we’re equally as fond of our smaller clients and their brands."
         />

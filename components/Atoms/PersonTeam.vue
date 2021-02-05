@@ -1,15 +1,15 @@
 <template>
-  <div class="person">
+  <div class="person-team">
+    <TextElement
+      v-if="pos && name"
+      class="person-pos text-primary text-color-s"
+      :text="pos"
+    />
+
     <TextElement
       v-if="name"
       class="text-primary"
       :text="name"
-    />
-
-    <TextElement
-      v-if="name && pos"
-      class="text-secondary text-color-s"
-      :text="pos"
     />
   </div>
 </template>
@@ -35,3 +35,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+.person-pos {
+  margin-bottom: 2px;
+}
+</style>

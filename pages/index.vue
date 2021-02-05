@@ -56,21 +56,16 @@ export default {
     HomeAudience,
     HomeAwards,
     HomeTeam
+  },
+
+  mounted () {
+    this.$nextTick(() => {
+      this.loadingLine()
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 
-.page-container {
-  min-height: 100vh;
-  padding-top: $header-height;
-}
-
-.page-bg {
-  position: relative;
-  padding-bottom: 10px;
-  background-color: $color-main;
-  z-index: 100;
-}
 </style>

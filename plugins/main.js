@@ -39,7 +39,7 @@ Vue.mixin({
       }
     },
 
-    loading () {
+    loadingLine () {
       setTimeout(() => {
         this.$nuxt.$loading.start()
       }, 0)
