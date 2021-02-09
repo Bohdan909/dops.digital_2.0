@@ -8,7 +8,7 @@ rm -rf /var/www/html/codedeploy/DOPS_vue2.0/node_modules/
 
 cd /var/www/html/codedeploy/DOPS_vue2.0
 
-port=3077
+port=3002
 sed -i 's/port:.*/port:'$port'/' /var/www/html/codedeploy/DOPS_vue2.0/nuxt.config.js
 
 npm install
