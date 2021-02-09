@@ -49,7 +49,7 @@
       <!-- Image Mobile -->
       <div v-else>
         <ImageElement
-          v-if="workItem.WorkPreview.PreviewMobile"
+          v-if="workItem.WorkPreview && workItem.WorkPreview.PreviewMobile"
           class="work-visual-img"
           :image-src="workItem.WorkPreview.PreviewMobile &&
             `${api_url}${workItem.WorkPreview.PreviewMobile.url}`
@@ -187,12 +187,6 @@ export default {
     desktopAndTablet () {
       return (this.mqDetect() === 'tablet' || this.mqDetect() === 'desktop')
     }
-  },
-
-  mounted () {
-    this.$nextTick(() => {
-      console.log(this.workIndex)
-    })
   }
 }
 </script>

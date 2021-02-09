@@ -2,7 +2,7 @@
   <div class="person">
     <TextElement
       v-if="name"
-      class="text-primary"
+      class="person-name text-primary"
       :text="name"
     />
 
@@ -35,3 +35,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+.person-name {
+  margin-bottom: 1px;
+}
+</style>

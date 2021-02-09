@@ -7,6 +7,7 @@
           :key="index"
           :to="item.link"
           class="menu-item ttl ttl-3 ttl-invert trans-color"
+          @click.native="$emit('menu-toggle')"
         >
           {{ item.name }}
         </nuxt-link>
@@ -128,7 +129,7 @@ export default {
   display: block;
   margin-bottom: 20px;
 
-  &.nuxt-link-active {
+  &.nuxt-link-exact-active {
     color: $text-color-g;
   }
 }

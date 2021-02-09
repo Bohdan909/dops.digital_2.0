@@ -1,4 +1,3 @@
-// import worksData from '~/static/worksData'
 import instanceAxios from '~/axiosInstance'
 
 const state = {
@@ -18,17 +17,16 @@ const getters = {
 
 const actions = {
 
-  async actionWorks (vuexContext) {
+  async actionWorks (vuexContext, limitArray) {
     try {
       const { data } = await instanceAxios.get('/works')
       vuexContext.commit('setWorks', data)
+      if (limitArray) {
+        vuexContext.commit('setWorksLimit', limitArray)
+      }
     } catch (err) {
       vuexContext.commit('SetError')
     }
-  },
-
-  actionWorksLimit (vuexContext, limitArray) {
-    vuexContext.commit('setWorksLimit', limitArray)
   }
 }
 

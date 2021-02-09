@@ -73,11 +73,13 @@
 <script>
 import Title from '~/components/atoms/Title'
 import LinkSt from '~/components/atoms/LinkSt'
+import TextElement from '~/components/atoms/TextElement'
 
 export default {
   components: {
     Title,
-    LinkSt
+    LinkSt,
+    TextElement
   },
 
   data () {

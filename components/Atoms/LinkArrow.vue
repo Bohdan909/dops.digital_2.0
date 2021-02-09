@@ -62,7 +62,7 @@ export default {
     color: $text-color;
   }
 
-  &.nuxt-link-active {
+  &.nuxt-link-exact-active {
     color: $text-color;
   }
 }

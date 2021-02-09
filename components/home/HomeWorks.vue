@@ -55,14 +55,14 @@ export default {
   },
 
   created () {
-    this.InitWorks()
-    this.setWorklimit(this.listOfWorks)
+    this.InitWorks(this.listOfWorks)
+    // this.setWorklimit(this.listOfWorks)
   },
 
   methods: {
     ...mapActions({
-      InitWorks: 'Works/actionWorks',
-      setWorklimit: 'Works/actionWorksLimit'
+      InitWorks: 'Works/actionWorks'
+      // setWorklimit: 'Works/actionWorksLimit'
     })
   }
 }

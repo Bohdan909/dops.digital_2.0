@@ -1,6 +1,6 @@
 <template>
   <footer class="footer-wrap">
-    <div class="footer footer-eclipse br fx-col">
+    <div v-show="footerShow || $mq === 'mobile'" class="footer footer-eclipse br fx-col">
       <!-- Top -->
       <FooterTop />
 
@@ -28,6 +28,10 @@ export default {
     FooterForm,
     FooterFollowUs,
     FooterBottom
+  },
+
+  props: {
+    footerShow: Boolean
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container container">
+  <div class="container page-container">
     <!-- Top Section -->
     <HomeTop />
 
