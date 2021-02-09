@@ -1,0 +1,11 @@
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /var/www/html/codedeploy/DOPS_vue2.0/
+
+hooks:
+    AfterInstall:
+    - location: install.sh
+      timeout: 3600
+      runas: ubuntu
