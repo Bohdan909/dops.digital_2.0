@@ -8,7 +8,11 @@
 
     <TextElement
       v-if="name && pos"
-      class="text-secondary text-color-s"
+      :class="['text-color-s', {
+        'text-secondary': !posBig,
+        'text-primary': posBig,
+      }
+      ]"
       :text="pos"
     />
   </div>
@@ -23,6 +27,8 @@ export default {
   },
 
   props: {
+    posBig: Boolean,
+
     name: {
       type: String,
       default: ''

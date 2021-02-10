@@ -98,8 +98,8 @@ export default {
     // baseUrl: process.env.BASE_URL || "https://dops.digital",
     baseUrl: process.env.BASE_URL || 'http://localhost:8000',
 
-    // strapiBaseUri: process.env.API_URL || 'http://localhost:1337',
-    strapiBaseUri: 'https://admin.dops.pro'
+    strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
+    // strapiBaseUri: 'https://admin.dops.pro'
   },
 
   loading: {

@@ -95,6 +95,8 @@
 
 // ==== Border Column ==== //
 
+.br-top,
+.br-top-end,
 .col-br-top,
 .col-br-top-end {
   position: relative;
@@ -103,8 +105,12 @@
     @extend .ps;
     height: 1px;
     left: 5px;
-    right: 5px;
+    right: -5px;
     background-color: $color-border;
+
+    @include mobile {
+      right: 5px;
+    }
   }
 
   &.col-br-d {
@@ -115,21 +121,43 @@
   }
 
   &::after {
+    display: none;
     top: auto;
     bottom: 0;
   }
 
-  &:not(.col-br-top-end)::before,
-  &:not(.col-br-top-end)::after {
-    right: -5px;
-
-    @include mobile {
-      right: 5px;
-    }
+  &.br-double::after,
+  &.col-br-double::after {
+    display: block;
   }
 
-  &:not(.col-br-double)::after {
-    display: none;
+  &.col-br-top-end::before,
+  &.col-br-top-end::after {
+    right: 5px;
+  }
+}
+
+// .br-top:not(.br-double)::after,
+// .col-br-top:not(.br-double)::after {
+//   display: none;
+// }
+
+.br-top {
+
+  &::before, &::after {
+    left: 0;
+    right: -10px;
+
+    @include mobile {
+      right: 0;
+    }
+  }
+}
+
+.br-top-end {
+
+  &::before, &::after {
+    right: 0;
   }
 }
 
