@@ -2,7 +2,11 @@
   <div class="person-team">
     <TextElement
       v-if="pos && name"
-      class="person-pos text-primary text-color-s"
+      :class="['person-pos text-color-s', {
+        'text-secondary': posSmall,
+        'text-primary': !posSmall,
+      }
+      ]"
       :text="pos"
     />
 
@@ -23,6 +27,11 @@ export default {
   },
 
   props: {
+    posSmall: {
+      type: Boolean,
+      default: false
+    },
+
     name: {
       type: String,
       default: ''

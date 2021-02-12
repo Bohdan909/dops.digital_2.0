@@ -20,10 +20,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import WorksTop from '~/components/works/WorksTop'
+import WorkItem from '~/components/works/WorkItem'
 
 export default {
   components: {
-    WorksTop
+    WorksTop,
+    WorkItem
   },
 
   computed: {
@@ -49,7 +51,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -1,10 +1,11 @@
 <template>
   <div
+    v-if="workItem"
     :class="['work-item col-mob-10 col-tablet-5',
              {
                'col-tablet-s-10 work-item-full' : itemMain && desktopAndTablet,
-               'col-tablet-s-4 work-item-middle' : itemMiddle && desktopAndTablet,
-               'col-tablet-s-2 work-item-small' : !itemMain && !itemMiddle && desktopAndTablet,
+               'col-tablet-s-4 work-item-middle' : itemMidle && desktopAndTablet,
+               'col-tablet-s-2 work-item-small' : !itemMain && !itemMidle && desktopAndTablet,
                'ffo-tablet-s-2': ItemMargin,
                'col-tablet-10 work-item-full itm': itemMainTablet && $mq === 'tabletSmall'
              }
@@ -55,7 +56,7 @@
             `${api_url}${workItem.WorkPreview.PreviewMobile.url}`
           "
           :placeholder-src="workItem.WorkPreview.PreviewMobilePlaceholder &&
-            api_url + workItem.WorkPreview.PreviewMobilePlaceholder.url
+            `${api_url}${workItem.WorkPreview.PreviewMobilePlaceholder.url}`
           "
           :alt="`Image ${workItem.WorkTitle}`"
         />
@@ -161,7 +162,7 @@ export default {
       api_url: process.env.strapiBaseUri,
       itemMainTablet: [1, 6, 11, 16, 21, 26, 31].some(el => el === this.workIndex),
       itemMain: [1, 5, 9, 13, 17, 21, 25, 29].some(el => el === this.workIndex),
-      itemMiddle: [2, 8, 10, 16, 18, 24, 26, 30].some(el => el === this.workIndex),
+      itemMidle: [2, 8, 10, 16, 18, 24, 26, 30].some(el => el === this.workIndex),
       ItemMargin: [2, 6, 10, 14, 18, 22, 26, 30].some(el => el === this.workIndex)
     }
   },

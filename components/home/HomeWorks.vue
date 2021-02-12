@@ -1,6 +1,6 @@
 <template>
   <div class="home-works">
-    <Items num="15" />
+    <Items :num="15" />
     <Title
       element="h2"
       class="ttl-1 bb"

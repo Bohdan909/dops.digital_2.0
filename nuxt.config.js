@@ -57,13 +57,16 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/moment'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    'vue-social-sharing/nuxt',
+    '@nuxtjs/markdownit',
     ['nuxt-lazy-load', {
       directiveOnly: true
     }]
@@ -98,8 +101,8 @@ export default {
     // baseUrl: process.env.BASE_URL || "https://dops.digital",
     baseUrl: process.env.BASE_URL || 'http://localhost:8000',
 
-    strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
-    // strapiBaseUri: 'https://admin.dops.pro'
+    // strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
+    strapiBaseUri: 'https://admin.dops.pro'
   },
 
   loading: {
@@ -111,5 +114,12 @@ export default {
   transition: {
     name: 'fade-page',
     mode: 'out-in'
+  },
+
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true
   }
 }

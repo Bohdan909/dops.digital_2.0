@@ -8,8 +8,8 @@
 export default {
   props: {
     num: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   }
 }
@@ -20,6 +20,6 @@ export default {
 .items {
   color: $text-color-s;
   font-size: 13px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 </style>

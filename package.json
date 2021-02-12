@@ -13,17 +13,20 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.6.5",
     "hooper": "^0.3.4",
     "nuxt": "^2.14.6",
     "nuxt-lazy-load": "^1.2.4",
     "vue-html-secure": "^1.0.9",
-    "vue-mq": "^1.0.1"
+    "vue-mq": "^1.0.1",
+    "vue-social-sharing": "^3.0.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@vue/cli-service": "^4.5.9",
     "@vue/eslint-config-airbnb": "^5.3.0",
