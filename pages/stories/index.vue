@@ -1,6 +1,6 @@
 <template>
   <div class="container page-container page-bg">
-    <div class="socket">
+    <div v-if="!isLoading" class="socket">
       <!-- Stories Filter -->
       <StoriesFilter />
 
@@ -14,23 +14,30 @@
         />
       </div>
     </div>
+    <PageLoader v-else />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 import StoriesFilter from '~/components/stories/StoriesFilter'
 import StoriesItem from '~/components/stories/StoriesItem'
+import PageLoader from '~/components/atoms/PageLoader'
 
 export default {
   components: {
     StoriesFilter,
-    StoriesItem
+    StoriesItem,
+    PageLoader
   },
 
   computed: {
     ...mapGetters({
       getStories: 'Stories/getStories'
+    }),
+
+    ...mapState({
+      isLoading: store => store.Stories.isLoading
     })
   },
 

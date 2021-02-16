@@ -65,12 +65,12 @@ export default {
 }
 
 .person-avatar-postop {
-  padding-top: 8px;
+  padding-top: 7px;
 }
 
 .person-avatar {
-  @include ctr-vert;
   position: absolute;
+  top: 0;
   left: 0;
   width: 50px;
   height: 50px;
@@ -82,6 +82,19 @@ export default {
 
     .text-secondary {
       line-height: 15px;
+    }
+  }
+}
+
+.person-avatar-block.min {
+  padding-left: 56px;
+  min-height: 42px;
+
+  &::v-deep {
+
+    .person-avatar {
+      width: 42px;
+      height: 42px;
     }
   }
 }

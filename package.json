@@ -21,7 +21,8 @@
     "nuxt-lazy-load": "^1.2.4",
     "vue-html-secure": "^1.0.9",
     "vue-mq": "^1.0.1",
-    "vue-social-sharing": "^3.0.4"
+    "vue-social-sharing": "^3.0.4",
+    "vue-vimeo-player": "^0.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

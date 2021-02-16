@@ -43,10 +43,8 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~plugins/main',
-    {
-      src: '~plugins/vue-secure-html',
-      ssr: false
-    }
+    { src: '~plugins/vimeo-player', ssr: false },
+    { src: '~plugins/vue-secure-html', ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -88,6 +86,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    vendor: ['vue-vimeo-player'],
     extend (config) {
       config.plugins.push(
         new StylelintWebpackPlugin({

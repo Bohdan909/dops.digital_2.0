@@ -1,6 +1,6 @@
 <template>
   <div class="container page-container page-bg">
-    <div class="socket">
+    <div v-if="!isLoading" class="socket">
       <!-- Top Section -->
       <StoriesOpenTop />
 
@@ -9,21 +9,35 @@
 
       <!-- Content -->
       <StoriesOpenContent />
+
+      <!-- Next -->
+      <StoriesNext />
     </div>
+    <PageLoader v-else />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import StoriesOpenTop from '~/components/stories/StoriesOpenTop'
 import StoriesOpenDesc from '~/components/stories/StoriesOpenDesc'
 import StoriesOpenContent from '~/components/stories/StoriesOpenContent'
+import StoriesNext from '~/components/stories/StoriesNext'
+import PageLoader from '~/components/atoms/PageLoader'
 
 export default {
   components: {
     StoriesOpenTop,
     StoriesOpenDesc,
-    StoriesOpenContent
+    StoriesOpenContent,
+    StoriesNext,
+    PageLoader
+  },
+
+  computed: {
+    ...mapState({
+      isLoading: store => store.StoriesOpen.isLoading
+    })
   },
 
   mounted () {
@@ -35,13 +49,13 @@ export default {
   created () {
     const { slug } = this.$route.params
     this.InitStoriesOpen(slug)
-    // this.InitStoriesNext()
+    this.InitStoriesNext()
   },
 
   methods: {
     ...mapActions({
-      InitStoriesOpen: 'StoriesOpen/actionStoriesOpen'
-      // InitStoriesNext: 'StoriesOpen/actionStoriesNext'
+      InitStoriesOpen: 'StoriesOpen/actionStoriesOpen',
+      InitStoriesNext: 'StoriesOpen/actionStoriesNext'
     })
   }
 }

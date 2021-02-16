@@ -3,11 +3,12 @@
     :class="['stories-item col-mob-10',
              {
                'col-tablet-10 stories-item-big': previewHandler('big', storiesIndex),
-               'col-tablet-s-2 col-tablet-5': !previewHandler('big', storiesIndex),
+               'col-tablet-s-2 col-tablet-5': !previewHandler('big', storiesIndex) && storiesIndex,
                'col-tablet-s-4': previewHandler('midle', storiesIndex),
                'off-desktop-2': previewHandler('off', storiesIndex),
                'off-tablet-s-2': previewHandler('off-tablet', storiesIndex),
-               'off-desktop-reset': !previewHandler('off', storiesIndex)
+               'off-desktop-reset': !previewHandler('off', storiesIndex) && storiesIndex,
+               'col-tablet-4': !storiesIndex
              }
     ]"
   >
@@ -28,6 +29,8 @@
         class="screen-image"
         :image-src="storiesItem.articleImage[0] &&
           `${api_url}${storiesItem.articleImage[0].url}`"
+        :placeholder-src="storiesItem.articleImagePlaceholder[0] &&
+          `${api_url}${storiesItem.articleImagePlaceholder[0].url}`"
       />
     </nuxt-link>
 
@@ -48,6 +51,7 @@
         <Title
           v-if="storiesItem.articleTitle"
           element="h3"
+          :to-page="`/stories/${storiesItem.slug}`"
           :class="['stories-ttl',
                    {
                      'ttl-4': $mq !== 'mobile',
@@ -80,6 +84,7 @@
       />
       <Title
         v-if="storiesItem.articleTitle"
+        :to-page="`/stories/${storiesItem.slug}`"
         element="h3"
         :class="['stories-ttl',
                  {
@@ -114,7 +119,7 @@ export default {
 
     storiesIndex: {
       type: Number,
-      default: 1
+      default: null
     }
   },
 
@@ -124,18 +129,28 @@ export default {
     }
   },
 
+  mounted () {
+    this.$nextTick(() => {
+      console.log(this.previewHandler('big', this.storiesIndex))
+    })
+  },
+
   methods: {
     previewHandler (type, index) {
-      index++
-      switch (type) {
-        case 'big':
-          return [1, 7, 13, 19, 26, 32, 38].some(el => el === index)
-        case 'midle':
-          return [2, 5, 8, 11, 14, 17, 20, 23, 26, 29].some(el => el === index)
-        case 'off':
-          return [4, 5, 10, 11, 15, 16, 21, 22, 26, 27].some(el => el === index)
-        case 'off-tablet':
-          return [4, 5, 6, 10, 11, 12, 16, 17, 18, 22, 23, 24, 28, 29, 30].some(el => el === index)
+      if (index !== null) {
+        index++
+        switch (type) {
+          case 'big':
+            return [1, 7, 13, 19, 26, 32, 38].some(el => el === index)
+          case 'midle':
+            return [2, 5, 8, 11, 14, 17, 20, 23, 26, 29].some(el => el === index)
+          case 'off':
+            return [4, 5, 10, 11, 15, 16, 21, 22, 26, 27].some(el => el === index)
+          case 'off-tablet':
+            return [4, 5, 6, 10, 11, 12, 16, 17, 18, 22, 23, 24, 28, 29, 30].some(el => el === index)
+        }
+      } else {
+
       }
     }
   }

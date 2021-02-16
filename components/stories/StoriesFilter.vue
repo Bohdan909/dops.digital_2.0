@@ -2,7 +2,7 @@
   <div class="stories-top bb">
     <div class="row">
       <div class="col-tablet-s-2 col-tablet-3">
-        <Items :num="5" />
+        <Items :num="storiesLength" />
         <Title
           element="h1"
           class="ttl-3"
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Items from '~/components/atoms/Items'
 import Title from '~/components/atoms/Title'
 import ButtonFilter from '~/components/atoms/ButtonFilter'
@@ -70,6 +70,9 @@ export default {
   computed: {
     ...mapGetters({
       getTags: 'Stories/getTags'
+    }),
+    ...mapState({
+      storiesLength: store => store.Stories.storiesLength
     })
   },
 

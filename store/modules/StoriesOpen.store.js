@@ -2,23 +2,37 @@
 import instanceAxios from '~/axiosInstance'
 
 const state = {
-  storiesOpenData: {}
+  storiesOpenData: {},
+  storiesNext: [],
+  storiesNextItems: 2,
+  isLoading: false
 }
 
 const getters = {
   getStoriesOpen (state) {
     return state.storiesOpenData
+  },
+
+  getStoriesNext (state) {
+    return state.storiesNext
+  },
+
+  getLoading (state) {
+    return state.isLoading
   }
 }
 
 const actions = {
 
   async actionStoriesOpen (vuexContext, id) {
+    vuexContext.commit('setLoading', true)
     try {
       const { data } = await instanceAxios.get(`/articles?slug=${id}`)
       vuexContext.commit('setStoriesOpen', data[0])
+      vuexContext.commit('setLoading', false)
     } catch (err) {
       vuexContext.commit('setError')
+      vuexContext.commit('setLoading', false)
     }
   },
 
@@ -37,15 +51,29 @@ const mutations = {
     state.storiesOpenData = context
   },
 
-  setStorieskNext (state, context) {
-    const id = state.storiesOpenData.slug
-    let indexNext = context.findIndex(item => id === item.Slug) + 1
-    if (indexNext === context.length) { indexNext = 0 }
-    state.workNext = context[indexNext]
+  setLoading (state, context) {
+    state.isLoading = context
+  },
+
+  setResetState (state) {
+    state.storiesOpenData = {}
   },
 
   setError () {
     this.$router.push('/404')
+  },
+
+  setStoriesNext (state, context) {
+    const id = state.storiesOpenData.slug
+    const storiesIndex = context.findIndex(item => id === item.slug)
+    const storiesNextArray = []
+
+    for (let i = 1; i <= state.storiesNextItems; i++) {
+      const storiesNextIndex = (storiesIndex + i >= context.length) ? i - 1 : storiesIndex + i
+      storiesNextArray.push(context[storiesNextIndex])
+    }
+
+    state.storiesNext = storiesNextArray
   }
 }
 

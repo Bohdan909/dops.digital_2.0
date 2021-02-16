@@ -47,7 +47,4 @@ export default {
 
 <style lang="scss" scoped>
 
-.person-pos {
-  margin-bottom: 2px;
-}
 </style>

@@ -4,7 +4,7 @@
     class="stories-open-desc row"
   >
     <!-- Back Button -->
-    <div class="stories-open-back col-tablet-2">
+    <div class="stories-open-back col-tablet-s-2 col-tablet-3 col-mob-10">
       <LinkBack
         class="link-back-big"
         to-page="/stories"
@@ -13,9 +13,10 @@
     </div>
 
     <!-- Author -->
-    <div class="col-tablet-6">
+    <div class="col-tablet-s-6 col-tablet-4 col-mob-5">
       <PersonAvatar
         v-if="getStoriesOpen.articleAuthor"
+        class="min"
         :avatar="getStoriesOpen.articleAuthor.avatar[0] &&
           `${api_url}${getStoriesOpen.articleAuthor.avatar[0].url}`"
         :name="getStoriesOpen.articleAuthor.name"
@@ -25,7 +26,7 @@
     </div>
 
     <!-- Social -->
-    <div class="col-tablet-2">
+    <div class="col-tablet-s-2 col-tablet-3 col-mob-5">
       <SocialShare
         class="stories-open-social"
         :social-array="socialArray"
@@ -106,5 +107,12 @@ export default {
 
 .stories-open-back {
   justify-content: center;
+}
+
+@include mobile {
+
+  .stories-open-back {
+    padding-bottom: 35px;
+  }
 }
 </style>

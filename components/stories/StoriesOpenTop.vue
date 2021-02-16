@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import Tag from '~/components/atoms/Tag'
 import TextElement from '~/components/atoms/TextElement'
 import Title from '~/components/atoms/Title'
@@ -65,6 +65,16 @@ export default {
   computed: {
     ...mapGetters({
       getStoriesOpen: 'StoriesOpen/getStoriesOpen'
+    })
+  },
+
+  destroyed () {
+    this.setReset()
+  },
+
+  methods: {
+    ...mapMutations({
+      setReset: 'StoriesOpen/setResetState'
     })
   }
 }
