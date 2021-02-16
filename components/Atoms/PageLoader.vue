@@ -32,6 +32,7 @@
 </template>
 
 <style lang="scss" scoped>
+
 .page-loader {
   position: relative;
   height: 100vh;

@@ -1,11 +1,11 @@
 <template>
   <div class="container page-container page-bg">
-    <div v-if="!isLoading" class="socket">
+    <div class="socket">
       <!-- Stories Filter -->
       <StoriesFilter />
 
       <!-- Stories Stories -->
-      <div class="row">
+      <div v-if="!isLoading" class="row">
         <StoriesItem
           v-for="(item, index) in getStories"
           :key="index"
@@ -13,8 +13,10 @@
           :stories-index="index"
         />
       </div>
+      <transition v-else name="fade">
+        <PageLoader />
+      </transition>
     </div>
-    <PageLoader v-else />
   </div>
 </template>
 

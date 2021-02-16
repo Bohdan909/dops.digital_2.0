@@ -34,7 +34,7 @@ export default {
     content: "";
     position: absolute;
     left: 0;
-    top: 6px;
+    top: 5px;
     display: block;
     width: 5px;
     height: 5px;

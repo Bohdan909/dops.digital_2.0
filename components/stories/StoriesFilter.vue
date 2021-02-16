@@ -9,6 +9,7 @@
           text="Stories"
         />
       </div>
+
       <!-- Filter Button Mobile -->
       <div
         v-if="$mq === 'mobile'"
@@ -16,22 +17,28 @@
       >
         <ButtonFilter
           class="stories-filter-btn is-active"
-          :text="`Filter (All)`"
+          :text="`Filter (${getTags.filter(item => item.active === true).map(item => item.name)})`"
+          is-massive
           @click.native="toggleFilter"
         />
         <div
-          :class="['stories-filter-drop', { 'is-open': filterOpen }]"
+          :class="['stories-filter-drop',
+                   { 'is-open': filterOpen }
+          ]"
         >
-          <div
+          <ButtonFilter
             v-for="(button, index) in getTags"
+            :id="button.name"
             :key="index"
             class="stories-filter-drop-item"
-            @click="toggleFilter"
-          >
-            {{ button.name }}
-          </div>
+            :text="button.name"
+            is-checkbox
+            :checked="button.active"
+            :checkchange="onChangeFilter"
+          />
         </div>
       </div>
+
       <!-- Filter Button Not Mobile -->
       <div
         v-for="(button, index) in getTags"
@@ -40,8 +47,15 @@
         class="stories-top-col col-tablet-s-1"
       >
         <ButtonFilter
-          class="stories-top-btn"
+          :id="button.name"
+          :class="['stories-top-btn',
+                   { 'is-active': button.active }
+          ]"
           :text="button.name"
+          :checked="button.active"
+          :checkchange="onChangeFilter"
+          is-checkbox
+          is-massive
         />
       </div>
     </div>
@@ -49,7 +63,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 import Items from '~/components/atoms/Items'
 import Title from '~/components/atoms/Title'
 import ButtonFilter from '~/components/atoms/ButtonFilter'
@@ -71,14 +85,45 @@ export default {
     ...mapGetters({
       getTags: 'Stories/getTags'
     }),
+
     ...mapState({
       storiesLength: store => store.Stories.storiesLength
     })
   },
 
+  beforeDestroy () {
+    this.setSelectedAll()
+  },
+
   methods: {
+    ...mapMutations({
+      setSelected: 'Stories/setTagSelected',
+      setSelectedAll: 'Stories/setTagSelectedAll'
+    }),
+
+    ...mapActions({
+      loadStories: 'Stories/actionStories'
+    }),
+
     toggleFilter () {
       this.filterOpen = !this.filterOpen
+    },
+
+    getActiveTag () {
+
+    },
+
+    onChangeFilter ({ target }, id) {
+      if (id === this.getTags[0].name) { // All
+        this.setSelectedAll()
+      } else {
+        this.setSelected({
+          id,
+          active: target.checked
+        })
+      }
+
+      this.loadStories()
     }
   }
 }
@@ -110,6 +155,10 @@ export default {
   .stories-filter-btn {
     width: 150px;
     z-index: 1;
+
+    &::v-deep .button-filter-massive-text {
+      color: $color-main;
+    }
   }
 
   .stories-filter-drop {
@@ -128,9 +177,9 @@ export default {
   }
 
   .stories-filter-drop-item {
+    width: 100%;
     color: $color-main;
     padding: 7px 0;
-    font-size: 13px;
   }
 }
 

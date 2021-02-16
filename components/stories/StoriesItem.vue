@@ -17,7 +17,7 @@
       v-if="!previewHandler('big', storiesIndex)"
       class="stories-tag"
     >
-      <Tag tag="Team" />
+      <Tag v-if="storiesItem.Tag" :tag="storiesItem.Tag" />
     </div>
 
     <!-- Images -->
@@ -40,7 +40,7 @@
       class="stories-desc-big row ha"
     >
       <div class="col-mob-2">
-        <Tag tag="Team" />
+        <Tag v-if="storiesItem.Tag" :tag="storiesItem.Tag" />
       </div>
       <div class="col-tablet-s-4 col-tablet-3 col-mob-6">
         <TextElement
@@ -127,12 +127,6 @@ export default {
     return {
       api_url: process.env.strapiBaseUri
     }
-  },
-
-  mounted () {
-    this.$nextTick(() => {
-      console.log(this.previewHandler('big', this.storiesIndex))
-    })
   },
 
   methods: {

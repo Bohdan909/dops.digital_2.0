@@ -19,6 +19,7 @@
     "hooper": "^0.3.4",
     "nuxt": "^2.14.6",
     "nuxt-lazy-load": "^1.2.4",
+    "qs": "^6.9.6",
     "vue-html-secure": "^1.0.9",
     "vue-mq": "^1.0.1",
     "vue-social-sharing": "^3.0.4",

@@ -1,9 +1,25 @@
 <template>
-  <div class="button-filter">
+  <div
+    :is="isCheckbox ? 'label' : 'div'"
+    :class="{
+      'button-filter-massive': isMassive,
+      'button-filter': !isMassive,
+    }"
+  >
     <TextElement
-      class="button-filter-text text-primary text-color-s trans-color"
+      :class="['text-primary', {
+        'button-filter-massive-text text-color-s trans-color': isMassive,
+        'button-filter-text': !isMassive
+      }]"
       :text="text"
     />
+    <input
+      v-if="isCheckbox"
+      class="button-filter-checkbox"
+      type="checkbox"
+      :checked="checked"
+      @change="checkchange($event, id)"
+    >
   </div>
 </template>
 
@@ -19,6 +35,31 @@ export default {
     text: {
       type: String,
       default: ''
+    },
+
+    isCheckbox: {
+      type: Boolean,
+      default: false
+    },
+
+    isMassive: {
+      type: Boolean,
+      default: false
+    },
+
+    checked: {
+      type: Boolean,
+      default: false
+    },
+
+    checkchange: {
+      type: Function,
+      default: () => null
+    },
+
+    id: {
+      type: String,
+      default: ''
     }
   }
 }
@@ -26,9 +67,13 @@ export default {
 
 <style lang="scss" scoped>
 
-.button-filter {
+.button-filter,
+.button-filter-massive {
   position: relative;
   display: inline-flex;
+}
+
+.button-filter-massive {
   align-self: flex-start;
   padding: 1px 25px 0 14px;
   min-width: 125px;
@@ -56,11 +101,11 @@ export default {
   }
 }
 
-.button-filter-text {
+.button-filter-massive-text {
   align-self: center;
 }
 
-.button-filter.is-active {
+.button-filter-massive.is-active {
   background-color: $color-black;
 
   &::after {
@@ -76,9 +121,16 @@ export default {
 
   &::v-deep {
 
-    .button-filter-text {
+    .button-filter-massive-text {
       color: $color-main;
     }
   }
+}
+
+.button-filter-checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 </style>
