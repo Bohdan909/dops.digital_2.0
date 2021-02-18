@@ -133,5 +133,4 @@ export default {
     color: $text-color-g;
   }
 }
-
 </style>

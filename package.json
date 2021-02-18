@@ -23,7 +23,8 @@
     "vue-html-secure": "^1.0.9",
     "vue-mq": "^1.0.1",
     "vue-social-sharing": "^3.0.4",
-    "vue-vimeo-player": "^0.1.1"
+    "vue-vimeo-player": "^0.1.1",
+    "vue2-dropzone": "^3.6.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

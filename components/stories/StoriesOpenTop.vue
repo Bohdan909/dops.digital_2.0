@@ -6,7 +6,11 @@
     <!-- Title -->
     <div class="stories-open-top-text row">
       <div class="col-tablet-s-2 col-tablet-3 col-mob-10">
-        <Tag class="stories-open-tag" tag="Team" />
+        <Tag
+          v-if="getStoriesOpen.Tag"
+          class="stories-open-tag"
+          :tag="getStoriesOpen.Tag"
+        />
       </div>
       <div class="col-tablet-s-8 col-tablet-7 col-mob-10">
         <TextElement

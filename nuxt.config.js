@@ -44,7 +44,8 @@ export default {
   plugins: [
     '~plugins/main',
     { src: '~plugins/vimeo-player', ssr: false },
-    { src: '~plugins/vue-secure-html', ssr: false }
+    { src: '~plugins/vue-secure-html', ssr: false },
+    { src: '~plugins/vue-dropzone', ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -76,6 +77,10 @@ export default {
       '@/assets/scss/utils/mixins.scss'
     ]
   },
+
+  serverMiddleware: [
+    { path: '/api/vacancy', handler: '~/api/vacancy' }
+  ],
 
   server: {
     port: 8000

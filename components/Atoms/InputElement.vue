@@ -3,7 +3,14 @@
     ref="input"
     :class="['input-item', { 'input-focus': inputFocus }]"
   >
+    <textarea
+      v-if="isTextarea"
+      maxlength="440"
+      :placeholder="placeholder"
+      class="textarea"
+    />
     <input
+      v-else
       class="input"
       :placeholder="placeholder"
       :type="type"
@@ -28,6 +35,11 @@ export default {
     },
 
     required: {
+      type: Boolean,
+      default: false
+    },
+
+    isTextarea: {
       type: Boolean,
       default: false
     }
@@ -63,8 +75,9 @@ export default {
   }
 
   &::after {
-    transition: transform .3s ease-out;
+    transition: transform .2s ease-out;
     transform: translateX(-105%);
+    background-color: $color-border;
   }
 
   &.input-focus {
@@ -72,6 +85,15 @@ export default {
     &::after {
       transform: translateX(0);
     }
+  }
+}
+
+.input-textarea {
+  width: 100%;
+
+  &::before,
+  &::after {
+    display: none;
   }
 }
 
@@ -86,19 +108,17 @@ export default {
   }
 }
 
-.input {
+.input,
+.textarea {
   width: 100%;
-  padding-bottom: 12px;
-  height: 34px;
   font-size: 14px;
   line-height: 18px;
   border: none;
   background: none;
   font-family: $font-med;
 
-  .input-item-big & {
-    font-size: 18px;
-    color: $text-color-g;
+  @include ph {
+    color: $text-color;
   }
 
   &:focus {
@@ -106,5 +126,38 @@ export default {
       opacity: .5;
     }
   }
+}
+
+.input {
+  padding-bottom: 12px;
+  height: 27px;
+  font-size: 14px;
+  line-height: 18px;
+
+  .input-item-d & {
+    @include ph {
+      color: $text-color-g;
+    }
+  }
+
+  .input-item-big & {
+    height: 34px;
+    font-size: 18px;
+    color: $text-color-g;
+  }
+}
+
+.textarea {
+  height: 185px;
+  line-height: 37px;
+  resize: none;
+  overflow: hidden;
+  background-image: repeating-linear-gradient(
+    180deg,
+    $color-main,
+    $color-main  36px,
+    #8a8a8a 36px,
+    #8a8a8a 37px
+  );
 }
 </style>

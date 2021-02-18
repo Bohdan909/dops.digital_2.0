@@ -27,7 +27,7 @@
           <Button
             :class="['btn-team btn-light', { 'btn-full': $mq === 'mobile' }]"
             element="nuxt-link"
-            to-page="/about"
+            to-page="/studio"
             text="Team"
           />
         </div>
