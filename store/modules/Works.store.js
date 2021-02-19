@@ -2,7 +2,8 @@ import instanceAxios from '~/axiosInstance'
 
 const state = {
   worksData: [],
-  worksDataLimit: []
+  worksDataLimit: [],
+  isLoading: false
 }
 
 const getters = {
@@ -18,14 +19,18 @@ const getters = {
 const actions = {
 
   async actionWorks (vuexContext, limitArray) {
+    vuexContext.commit('setLoading', true)
+
     try {
       const { data } = await instanceAxios.get('/works')
       vuexContext.commit('setWorks', data)
       if (limitArray) {
         vuexContext.commit('setWorksLimit', limitArray)
       }
+      vuexContext.commit('setLoading', false)
     } catch (err) {
-      vuexContext.commit('SetError')
+      vuexContext.commit('setError')
+      vuexContext.commit('setLoading', false)
     }
   }
 }
@@ -43,7 +48,11 @@ const mutations = {
     state.worksDataLimit = newArray
   },
 
-  SetError () {
+  setLoading (state, context) {
+    state.isLoading = context
+  },
+
+  setError () {
     this.$router.push('/404')
   }
 }

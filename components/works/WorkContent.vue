@@ -37,17 +37,26 @@
             'col-tablet-5': !element.ImageFull
           }]"
         >
-          <div v-if="element.ImageSrc" class="work-image-wrap br">
+          <div v-if="element.ImageSrc && $mq !== 'mobile'" class="work-image-wrap br">
             <VideoElement
               v-if="element.ImageSrc.url.substr(element.ImageSrc.url.length - 3) === 'mp4'"
               class="work-video screen-image"
               :video-src="element.ImageSrc && `${api_url}${element.ImageSrc.url}`"
+              :poster="element.ImagePlaceholderSrc && `${api_url}${element.ImagePlaceholderSrc.url}`"
             />
 
             <ImageElement
               v-else
               class="work-image screen-image"
               :image-src="element.ImageSrc && `${api_url}${element.ImageSrc.url}`"
+              :placeholder-src="element.ImagePlaceholderSrc && `${api_url}${element.ImagePlaceholderSrc.url}`"
+            />
+          </div>
+
+          <div v-if="element.ImageMobileSrc && $mq === 'mobile'" class="work-image-wrap br">
+            <ImageElement
+              class="work-image screen-image"
+              :image-src="element.ImageMobileSrc && `${api_url}${element.ImageMobileSrc.url}`"
             />
           </div>
         </div>
@@ -61,12 +70,14 @@ import { mapGetters } from 'vuex'
 import Title from '~/components/atoms/Title'
 import TextElement from '~/components/atoms/TextElement'
 import ImageElement from '~/components/atoms/ImageElement'
+import VideoElement from '~/components/atoms/VideoElement'
 
 export default {
   components: {
     Title,
     TextElement,
-    ImageElement
+    ImageElement,
+    VideoElement
   },
 
   data () {

@@ -1,6 +1,6 @@
 <template>
   <div class="container page-container page-bg">
-    <div class="socket">
+    <div v-if="!isLoading" class="socket">
       <!-- Top Section -->
       <WorksTop />
 
@@ -14,23 +14,30 @@
         />
       </div>
     </div>
+    <PageLoader v-else />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 import WorksTop from '~/components/works/WorksTop'
 import WorkItem from '~/components/works/WorkItem'
+import PageLoader from '~/components/atoms/PageLoader'
 
 export default {
   components: {
     WorksTop,
-    WorkItem
+    WorkItem,
+    PageLoader
   },
 
   computed: {
     ...mapGetters({
       getWorks: 'Works/getWorks'
+    }),
+
+    ...mapState({
+      isLoading: store => store.StoriesOpen.isLoading
     })
   },
 

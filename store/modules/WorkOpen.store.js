@@ -7,7 +7,8 @@ const state = {
   workScreen: {},
   workContent: [],
   workTeam: {},
-  workNext: {}
+  workNext: {},
+  isLoading: false
 }
 
 const getters = {
@@ -39,6 +40,8 @@ const getters = {
 const actions = {
 
   async actionWorkOpen (vuexContext, id) {
+    vuexContext.commit('setLoading', true)
+
     try {
       const { data } = await instanceAxios.get(`/works?Slug=${id}`)
       vuexContext.commit('setWorkOpen', data[0])
@@ -61,8 +64,10 @@ const actions = {
         project: data[0]?.WorkTitle,
         ...data[0]?.WorkTeam
       })
+      vuexContext.commit('setLoading', false)
     } catch (err) {
       vuexContext.commit('setError')
+      vuexContext.commit('setLoading', false)
     }
   },
 
@@ -102,6 +107,10 @@ const mutations = {
     let indexNext = context.findIndex(item => id === item.Slug) + 1
     if (indexNext === context.length) { indexNext = 0 }
     state.workNext = context[indexNext]
+  },
+
+  setLoading (state, context) {
+    state.isLoading = context
   },
 
   setError () {

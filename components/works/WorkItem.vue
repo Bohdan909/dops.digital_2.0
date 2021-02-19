@@ -13,6 +13,7 @@
   >
     <!-- Visual -->
     <nuxt-link
+      v-if="workItem.Slug"
       class="work-visual br"
       :to="`/works/${workItem.Slug}`"
     >
