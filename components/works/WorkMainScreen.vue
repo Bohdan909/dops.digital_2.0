@@ -1,7 +1,7 @@
 <template>
   <div v-if="getMainScreen" class="work-main-screen br">
     <VideoElement
-      v-if="getMainScreen.video"
+      v-if="getMainScreen.video && $mq !== 'mobile'"
       class="work-main-video screen-image"
       :video-src="getMainScreen.videoUrl && `${api_url}${getMainScreen.videoUrl}`"
       :poster="getMainScreen.placeholderUrl && `${api_url}${getMainScreen.placeholderUrl}`"
@@ -9,7 +9,7 @@
     />
 
     <ImageElement
-      v-else
+      v-if="!getMainScreen.video || $mq === 'mobile'"
       class="work-main-image screen-image"
       :image-src="getMainScreen.imageUrl && `${api_url}${getMainScreen.imageUrl}`"
       :placeholder-src="getMainScreen.placeholderUrl && `${api_url}${getMainScreen.placeholderUrl}`"

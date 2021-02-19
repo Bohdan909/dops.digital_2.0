@@ -2,6 +2,7 @@ import StylelintWebpackPlugin from 'stylelint-webpack-plugin'
 
 export default {
   mode: 'universal',
+  target: 'server',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     htmlAttrs: {
