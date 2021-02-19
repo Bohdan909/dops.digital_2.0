@@ -11,6 +11,16 @@
   </div>
 </template>
 
+<script>
+import TextElement from '~/components/atoms/TextElement'
+
+export default {
+  components: {
+    TextElement
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 
 .footer-top {

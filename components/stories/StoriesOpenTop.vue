@@ -51,12 +51,14 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Tag from '~/components/atoms/Tag'
 import TextElement from '~/components/atoms/TextElement'
+import ImageElement from '~/components/atoms/ImageElement'
 import Title from '~/components/atoms/Title'
 
 export default {
   components: {
     Tag,
     TextElement,
+    ImageElement,
     Title
   },
 

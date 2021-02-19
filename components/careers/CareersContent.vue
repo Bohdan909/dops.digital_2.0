@@ -72,11 +72,13 @@
 <script>
 import TextElement from '~/components/atoms/TextElement'
 import Title from '~/components/atoms/Title'
+import ImageElement from '~/components/atoms/ImageElement'
 
 export default {
   components: {
     TextElement,
-    Title
+    Title,
+    ImageElement
   },
 
   data () {

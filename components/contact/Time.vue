@@ -25,10 +25,12 @@
 
 <script>
 import Title from '~/components/atoms/Title'
+import TextElement from '~/components/atoms/TextElement'
 
 export default {
   components: {
-    Title
+    Title,
+    TextElement
   },
 
   data () {

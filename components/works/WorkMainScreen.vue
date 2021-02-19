@@ -1,18 +1,28 @@
 <template>
   <div v-if="getMainScreen" class="work-main-screen br">
-    <VideoElement
-      v-if="getMainScreen.video && $mq !== 'mobile'"
-      class="work-main-video screen-image"
-      :video-src="getMainScreen.videoUrl && `${api_url}${getMainScreen.videoUrl}`"
-      :poster="getMainScreen.placeholderUrl && `${api_url}${getMainScreen.placeholderUrl}`"
-      is-lazy
-    />
+    <template v-if="$mq !== 'mobile'">
+      <VideoElement
+        v-if="getMainScreen.type === 'video' && $mq !== 'mobile'"
+        class="work-main-video screen-image"
+        :video-src="getMainScreen.mediaUrl && `${api_url}${getMainScreen.mediaUrl}`"
+        :poster="getMainScreen.mediaPlaceholderUrl && `${api_url}${getMainScreen.mediaPlaceholderUrl}`"
+        is-lazy
+      />
+
+      <ImageElement
+        v-if="getMainScreen.type === 'image' && $mq !== 'mobile'"
+        class="work-main-image screen-image"
+        :image-src="getMainScreen.mediaUrl && `${api_url}${getMainScreen.mediaUrl}`"
+        :placeholder-src="getMainScreen.mediaPlaceholderUrl && `${api_url}${getMainScreen.mediaPlaceholderUrl}`"
+        :alt="`Image ${getMainScreen.title}`"
+      />
+    </template>
 
     <ImageElement
-      v-if="!getMainScreen.video || $mq === 'mobile'"
-      class="work-main-image screen-image"
-      :image-src="getMainScreen.imageUrl && `${api_url}${getMainScreen.imageUrl}`"
-      :placeholder-src="getMainScreen.placeholderUrl && `${api_url}${getMainScreen.placeholderUrl}`"
+      v-else
+      class="screen-image"
+      :image-src="getMainScreen.imageMobileUrl && `${api_url}${getMainScreen.imageMobileUrl}`"
+      :placeholder-src="getMainScreen.imageMobilePlaceholderUrl && `${api_url}${getMainScreen.imageMobilePlaceholderUrl}`"
       :alt="`Image ${getMainScreen.title}`"
     />
   </div>
@@ -58,7 +68,8 @@ export default {
   }
 
   @include mobile {
-    height: 197px;
+    height: 467px;
   }
 }
+
 </style>

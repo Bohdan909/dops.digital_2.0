@@ -6,7 +6,13 @@
 </template>
 
 <script>
+import TextElement from '~/components/atoms/TextElement'
+
 export default {
+  components: {
+    TextElement
+  },
+
   props: {
     text: {
       type: String,

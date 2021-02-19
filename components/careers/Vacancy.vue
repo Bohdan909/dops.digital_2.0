@@ -47,6 +47,24 @@ export default {
   &:last-child {
     border-bottom: 1px solid $color-border;
   }
+
+  @include hover {
+
+    &::v-deep {
+
+      .vacancy-name .text-primary {
+        text-decoration: underline;
+      }
+
+      .vacancy-play {
+        transform: scale(1.16);
+      }
+    }
+
+    .vacancy-fire {
+      animation: fire 2.4s infinite;
+    }
+  }
 }
 
 .vacancy-name {
@@ -73,6 +91,7 @@ export default {
   height: 18px;
   border-radius: 50%;
   background-color: $color-orange;
+  transition: transform .2s;
 
   &::after {
     @include tr-right(4px, 4px, 5px, $color-main);
@@ -81,6 +100,29 @@ export default {
     display: block;
     position: absolute;
     left: 53%;
+  }
+}
+
+@keyframes fire {
+
+  0% {
+    transform: translate(0, 0)
+  }
+
+  25% {
+    transform: translate(1px, -1px) scale(1.08)
+  }
+
+  50% {
+    transform: translate(1px, 0) scale(1.02)
+  }
+
+  75% {
+    transform: translate(0, -1px) scale(1.13)
+  }
+
+  100% {
+    transform: translate(0, 0)
   }
 }
 </style>

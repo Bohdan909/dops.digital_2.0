@@ -163,8 +163,10 @@
 
 <script>
 import TextElement from '~/components/atoms/TextElement'
+import ImageElement from '~/components/atoms/ImageElement'
 import Title from '~/components/atoms/Title'
 import Flag from '~/components/atoms/Flag'
+import Lines from '~/components/atoms/Lines'
 import AwardsTag from '~/components/atoms/AwardsTag'
 
 export default {
@@ -172,7 +174,9 @@ export default {
     TextElement,
     Title,
     AwardsTag,
-    Flag
+    ImageElement,
+    Flag,
+    Lines
   },
 
   data () {

@@ -27,7 +27,17 @@
 </template>
 
 <script>
+import ImageElement from '~/components/atoms/ImageElement'
+import PersonTeam from '~/components/atoms/PersonTeam'
+import Person from '~/components/atoms/Person'
+
 export default {
+  components: {
+    ImageElement,
+    PersonTeam,
+    Person
+  },
+
   props: {
     posTop: {
       type: Boolean,

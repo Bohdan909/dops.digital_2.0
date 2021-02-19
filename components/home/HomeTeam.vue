@@ -52,13 +52,15 @@ import TextElement from '~/components/atoms/TextElement'
 import Year from '~/components/atoms/Year'
 import Title from '~/components/atoms/Title'
 import Button from '~/components/atoms/Button'
+import ImageElement from '~/components/atoms/ImageElement'
 
 export default {
   components: {
     TextElement,
     Year,
     Title,
-    Button
+    Button,
+    ImageElement
   },
 
   data () {

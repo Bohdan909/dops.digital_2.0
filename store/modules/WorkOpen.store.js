@@ -54,10 +54,11 @@ const actions = {
       })
       vuexContext.commit('setMainScreen', {
         title: data[0]?.WorkTitle,
-        video: data[0]?.WorkMainVideo?.url,
-        videoUrl: data[0]?.WorkMainVideo?.url,
-        imageUrl: data[0]?.WorkMainImage?.url,
-        placeholderUrl: data[0]?.WorkMainPlaceholder?.url
+        type: data[0]?.WorkPreview?.PreviewType,
+        mediaUrl: data[0]?.WorkPreview?.Preview?.url,
+        mediaPlaceholderUrl: data[0]?.WorkPreview?.PreviewPlaceholder?.url,
+        imageMobileUrl: data[0]?.WorkPreview?.PreviewMobile?.url,
+        imageMobilePlaceholderUrl: data[0]?.WorkPreview?.PreviewMobilePlaceholder?.url
       })
       vuexContext.commit('setWorkContent', data[0]?.WorkContent)
       vuexContext.commit('setWorkTeam', {

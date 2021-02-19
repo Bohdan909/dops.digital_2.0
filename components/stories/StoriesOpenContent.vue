@@ -49,8 +49,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Title from '~/components/atoms/Title'
 
 export default {
+  components: {
+    Title
+  },
+
   data () {
     return {
       playerReady: false,

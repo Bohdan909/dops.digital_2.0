@@ -101,6 +101,7 @@
 import ImageElement from '~/components/atoms/ImageElement'
 import PersonAvatar from '~/components/atoms/PersonAvatar'
 import Title from '~/components/atoms/Title'
+import TextElement from '~/components/atoms/TextElement'
 import Tag from '~/components/atoms/Tag'
 
 export default {
@@ -108,6 +109,7 @@ export default {
     ImageElement,
     PersonAvatar,
     Title,
+    TextElement,
     Tag
   },
 

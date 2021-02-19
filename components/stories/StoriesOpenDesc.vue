@@ -43,11 +43,13 @@
 import { mapGetters } from 'vuex'
 import LinkBack from '~/components/atoms/LinkBack'
 import PersonAvatar from '~/components/atoms/PersonAvatar'
+import SocialShare from '~/components/atoms/SocialShare'
 
 export default {
   components: {
     LinkBack,
-    PersonAvatar
+    PersonAvatar,
+    SocialShare
   },
 
   data () {
