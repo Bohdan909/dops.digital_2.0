@@ -6,6 +6,7 @@
         class="studio-top-head fx-col text-primary text-color-s"
         text="Who we are"
       />
+
       <div class="studio-top-body br-top br-double">
         <Title
           element="h2"
